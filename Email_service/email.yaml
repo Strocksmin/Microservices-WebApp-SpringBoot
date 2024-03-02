@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: email
+  name: email
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email
+  template:
+    metadata:
+      labels:
+        app: email
+    spec:
+      containers:
+        - image: tvksp8/email:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 1112
+          name: email
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "500M"
+            limits:
+              cpu: "0.5"
+              memory: "500M"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

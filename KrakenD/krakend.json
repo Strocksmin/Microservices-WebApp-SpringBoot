@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "extra_config": {
+  },
+  "endpoints": [
+    {
+      "endpoint": "/auth/login",
+      "method": "POST",
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/auth/login",
+          "host": ["http://auth.default:8080"],
+          "encoding": "string"
+        }
+      ]
+    },
+    {
+      "endpoint": "/auth/register",
+      "method": "POST",
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/auth/register",
+          "host": ["http://auth.default:8080"],
+          "encoding": "string"
+        }
+      ]
+    },
+    {
+      "endpoint": "/request",
+      "method": "POST",
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "input_headers": ["*"],
+      "backend": [
+        {
+          "url_pattern": "/request",
+          "host": ["http://request.default:1111"],
+          "encoding": "string"
+        }
+      ]
+    }
+  ]
+}

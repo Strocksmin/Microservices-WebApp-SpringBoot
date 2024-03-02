@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: request
+  name: request
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: request
+  template:
+    metadata:
+      labels:
+        app: request
+    spec:
+      containers:
+        - image: tvksp8/request:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 1111
+          name: request
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "500M"
+            limits:
+              cpu: "0.5"
+              memory: "500M"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
